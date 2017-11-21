@@ -3,9 +3,9 @@ import Individual from '../components/individual-component';
 import Employer from '../components/employer-component';
 
 export const ForgotUserName = (props) => {
-    const { userType, onChangeUserType,formValidationSSN,modelData ,onChangeInputType} = props;
-    console.log(props,':::::::::::::::::::::::::::::::::::::::::::',userType,modelData);
-
+    const { userType, onChangeUserType,onSubmitAction} = props;
+    //this.props.history.push('/submit');
+    console.log(props,':::::::::::::::::::::::::::::::::::::::::::',userType);
         return (
          <div>
              <div id="forgot-username" className="container">
@@ -33,31 +33,33 @@ export const ForgotUserName = (props) => {
                                                  Employer
                                              </label>
                                      </div>
-                                     {/*<input className="form-control ssn-control" type="text"*/}
-                                            {/*name="validkey" onChange={(e) => onChangeInputType(e)}*/}
-                                            {/*defaultValue={formValidationSSN.value} />*/}
                                  </div>
                              </div>
-                             {userType === 'individual' ?  <Individual {...props} onChange={(e) => onChangeInputType(e)} />: <Employer {...props} />}
+                             {userType === 'individual' ?  <Individual {...props} />: <Employer {...props} />}
                              <div className="captcha-container">
-                                 <div className="g-recaptcha form-group" data-sitekey="6LcGfSoUAAAAAMmvZmdDWLoh3hXZ6cxXfvn9SjyX">
+                                 <div className="g-recaptcha form-group"
+                                      data-sitekey="6LcGfSoUAAAAAMmvZmdDWLoh3hXZ6cxXfvn9SjyX">
                                      <div>
                                          <div>
-                                             <iframe src="https://www.google.com/recaptcha/api2/anchor?k=6LcGfSoUAAAAAMmvZmdDWLoh3hXZ6cxXfvn9SjyX&amp;co=aHR0cHM6Ly9sb2dpbi52YWxpYy5jb206NDQz&amp;hl=en&amp;v=r20171109115411&amp;size=normal&amp;cb=hyzytpe4hrck" width="304" height="78" role="presentation" frameBorder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe>
+                                             <iframe
+                                                 src="https://www.google.com/recaptcha/api2/anchor?k=6LcGfSoUAAAAAMmvZmdDWLoh3hXZ6cxXfvn9SjyX&amp;co=aHR0cHM6Ly9sb2dpbi52YWxpYy5jb206NDQz&amp;hl=en&amp;v=r20171109115411&amp;size=normal&amp;cb=hyzytpe4hrck"
+                                                 width="304" height="78" role="presentation" frameBorder="0"
+                                                 scrolling="no"
+                                                 sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe>
                                          </div>
-
                                      </div>
                                  </div>
                              </div>
-                             {/*<div id="btn-container" className="btn-container">*/}
-                                 {/*<div className="form-group buttons">*/}
-                                     {/*<input className="btn grey cancel" type="submit" value="Cancel" name="ActionName"/>*/}
-                                     {/*<input className="btn" type="submit" value="Submit" name="ActionName"/>*/}
-                                 {/*</div>*/}
-                                 {/*<div className="link-container">*/}
-                                     {/*<a className="cta" href="https://www.valic.com/security-center" target="_blank" title="Stay Secure">StaySecure<i className="icon-carrot-right"></i></a>*/}
-                                 {/*</div>*/}
-                             {/*</div>*/}
+                             <div id="btn-container" className="btn-container">
+                                 <div className="form-group buttons">
+                                     <input className="btn grey cancel" type="submit" value="Cancel" />
+                                     <input className="btn" type="button" defaultValue="Submit"  onClick={(e) => onSubmitAction(e)}/>
+                                 </div>
+                                 <div className="link-container">
+                                     <a className="cta" href="https://www.valic.com/security-center" target="_blank"
+                                        title="Stay Secure">StaySecure<i className="icon-carrot-right"></i></a>
+                                 </div>
+                             </div>
                          </section>
                      </form>
                  </div>
