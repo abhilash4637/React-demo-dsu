@@ -38,7 +38,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
         onChangeOutsideInputType:onChangeOutsideInputType,
         onChangeMaskInputType:onChangeMaskInputType,
         onSubmitAction: onSubmitAction,
-    onChangeShowHide: onChangeShowHide,
+        onChangeShowHide: onChangeShowHide,
+        //onChangeInsideInputType:onChangeInsideInputType
 
 }, dispatch);
 

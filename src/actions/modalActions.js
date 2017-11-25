@@ -1,6 +1,7 @@
 import * as types from '../constants';
 import {browserHistory  } from 'react-router';
 
+
 export const onChangeShowHide = (event) => {
     return (dispatch, getState) => {
         const formValidationSSNchange = getState().modal.formValidationSSN;
@@ -51,18 +52,35 @@ export const onChangeUserType = (event) => {
 export const onChangeOutsideInputType = (event) => {
     return (dispatch, getState) => {
         const formValidationSSNchange = getState().modal.formValidationSSN;
+        const formValidationdobchange = getState().modal.formValidationDOB;
+        const formValidationemailchange = getState().modal.formValidationEmail;
         let showHideInputchange = getState().modal.showHideInput;
-        if(formValidationSSNchange.nomask.length != 9){
-            formValidationSSNchange.error = 'true';
-            showHideInputchange = false;
-            formValidationSSNchange.changeInput = 'true'
 
+        if(event.target.name == "ssnInput"){
+            if(formValidationSSNchange.nomask.length != 9){
+                formValidationSSNchange.error = 'true';
+                showHideInputchange = false;
+                formValidationSSNchange.changeInput = 'true'
+            }
         }
+        else if(event.target.name == "DOBInput"){
+            if(formValidationdobchange.nomask.length != 8){
+                formValidationdobchange.error = 'true';
+            }
+        }else if(event.target.name == "employerEmailInput"){
+            if(/^\w+([\.-]*\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/.test(formValidationemailchange.value)){
+                formValidationemailchange.error= formValidationemailchange.value ? 'false' : 'true';
+            }
+            else{
+                formValidationemailchange.error= 'true';
+            }
+        }
+
         dispatch({
             type: types.INPUT_CHANGE_OUTSIDE,
             formValidationSSN: formValidationSSNchange,
             formValidationLast: getState().modal.formValidationLast,
-            formValidationDOB: getState().modal.formValidationDOB,
+            formValidationDOB: formValidationdobchange,
             formValidationEmail : getState().modal.formValidationEmail,
             showHideInput:  showHideInputchange,
             userType: getState().modal.userType
@@ -93,7 +111,15 @@ export const onSubmitAction = (event) => {
                 pathname: '/submit',
                 state: { some:  getState().modal }
             });
-        }else{
+        }else if(getState().modal.formValidationSSN.nomask.length == 9 && getState().modal.formValidationLast.value && getState().modal.formValidationDOB.nomask.length == 8){
+            console.log(':::::::::::::::::::::::::::return',browserHistory);
+            //browserHistory.push('/submit');
+            browserHistory.push({
+                pathname: '/submit',
+                state: { some:  getState().modal }
+            });
+        }
+        else{
             dispatch({
                 type: types.SUBMIT_ACTION,
                 formValidationSSN: getState().modal.formValidationSSN,
@@ -133,23 +159,21 @@ function renderContent(propertyName,event) {
             var str = txt.match(/\d+/g, "")+'';
             var s = str.split(',').join('');
             propertyName.nomask = s;
-            if(s.length == 8){
-                propertyName.error= propertyName.value ? 'false' : 'true';
-            }
-            else{
+            propertyName.value = event.target.value;
+            propertyName.error = propertyName.value ? 'false' : 'true';
+            if(event.keyCode == 8){
                 propertyName.error= 'true';
             }
-            propertyName.value = event.target.value;
-
             break;
         case 'employerEmailInput':
-            if(/^\w+([\.-]*\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/.test(event.target.value)){
+           /* if(/^\w+([\.-]*\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/.test(event.target.value)){
                 propertyName.error= propertyName.value ? 'false' : 'true';
             }
             else{
                 propertyName.error= 'true';
-            }
+            }*/
             propertyName.value = event.target.value;
+            propertyName.error= propertyName.value ? 'false' : 'true';
             break;
         default :
             break;

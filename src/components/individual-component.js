@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import InputMask from 'react-input-mask';
+var classNames = require('classnames');
 
 class Individual extends Component {
     constructor(props){
@@ -8,6 +9,7 @@ class Individual extends Component {
     render() {
         const {formValidationSSN, formValidationLast, formValidationDOB, onChangeInputType,onChangeOutsideInputType,onChangeMaskInputType,showHideInput,onChangeShowHide} = this.props;
         console.log(this.props, ':::::individaula::::::::::::::::::::::::::::');
+       /*  className={classNames('foo', { errorMsg: formValidationSSN.error == 'true'})}*/
 
         return (
             <div>
@@ -26,10 +28,10 @@ class Individual extends Component {
                                 <div className="form-group ssn-group reveal  has-error has-feedback">
                                     <label className="form-label" htmlFor="ssnInput">SSN</label>
                                     { formValidationSSN.changeInput == false ?
-                                        <InputMask className="form-control ssn-control" mask="999-99-9999" id="ssnInput"
+                                        <InputMask  className={classNames('form-control ssn-control', { errorMsg: formValidationSSN.error == 'true'})}  mask="999-99-9999" id="ssnInput"
                                                    defaultValue={formValidationSSN.value}  name="ssnInput" onKeyUp={(e) => onChangeInputType(e)}
                                                    onBlur={(e) => onChangeOutsideInputType(e)}/>
-                                        :<input className="form-control" defaultValue={formValidationSSN.nomask} type="password" id="ssnInput"
+                                        :<input className={classNames('form-control ssn-control', { errorMsg: formValidationSSN.error == 'true'})}   defaultValue={formValidationSSN.nomask} type="password" id="ssnInput"
                                                    name="ssnInput" onKeyUp={(e) => onChangeMaskInputType(e)}
                                                    maxLength="9"/>
                                     }
@@ -43,13 +45,14 @@ class Individual extends Component {
                                 </div>
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="lastNameInput">Last name</label>
-                                    <input className="form-control" defaultValue={formValidationLast.value} type="text"
-                                           id="LastNameInput" name="LastNameInput" onKeyDown={(e) => onChangeInputType(e)}/>
+                                    <input className={classNames('form-control ', { errorMsg: formValidationLast.error == 'true'})}  defaultValue={formValidationLast.value} type="text"
+                                           id="LastNameInput" name="LastNameInput" onKeyUp={(e) => onChangeInputType(e)}/>
                                 </div>
                                 <div className="form-group">
                                     <label className="form-label" htmlFor="dobInput">Date of birth</label>
-                                    <InputMask className="form-control birth-date-control" mask="99/99/9999" id="DOBInput"
-                                               name="DOBInput" onKeyUp={(e) => onChangeInputType(e)} placeholder="mm/dd/yyyy"/>
+                                    <InputMask className={classNames('form-control birth-date-control', { errorMsg: formValidationDOB.error == 'true'})}  mask="99/99/9999" id="DOBInput"
+                                               name="DOBInput"  onBlur={(e) => onChangeOutsideInputType(e)} onKeyUp={(e) => onChangeInputType(e)} placeholder="mm/dd/yyyy"
+                                              />
                                     {/*<input className="form-control birth-date-control" type="date" maxLength="8"*/}
                                            {/*defaultValue={formValidationDOB.value} id="DOBInput" name="DOBInput"*/}
                                            {/*onChange={(e) => onChangeInputType(e)}/>*/}

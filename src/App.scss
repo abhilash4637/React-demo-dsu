@@ -43,14 +43,14 @@
       }
       .radios {
         text-align: center;
-        max-width: 260px;
+        max-width: 282px;
         margin-top: 20px;
         margin-left: auto;
         margin-right: auto;
         width: 100%;
         &.form-group {
           position: relative;
-          margin-bottom: 30px;
+          margin-bottom:0px;
           display: table
         }
 
@@ -59,8 +59,9 @@
           margin-right: 30px;
           position: static;
           min-height: 30px;
-          padding: 8px 0 15px;
+          padding: 0px 0 15px;
           position: relative;
+          width:110px;
           input[type=radio] {
             border-radius: 30px;
             opacity: 0;
@@ -94,10 +95,10 @@
             border-radius: 50%;
             content: "";
             height: 12px;
-            left: 2px;
+            left: 1px;
             width: 12px;
             position: absolute;
-            top: 7px;
+            top: 5px;
           }
 
         }
@@ -112,10 +113,11 @@
     width: 100%;
     font-size: 14px;
     color: #c41230;
-    text-align: center;
+    text-align: left;
+    margin-bottom: 20px;
+    margin-top: 20px;
     label {
-      margin-bottom: 20px;
-      margin-top: 20px;
+
       font-size: 13px;
       line-height: 13px;
       text-align: center;
@@ -131,13 +133,13 @@
     float: left;
     width:100%;
     .form-group {
-      margin-top: 20px;
+      margin-top: 0px;
       margin-left: auto;
       margin-right: auto;
       max-width: 380px;
       width: 100%;
       position: relative;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       label {
         display: inline-block;
         margin-bottom: 5px;
@@ -148,6 +150,7 @@
         line-height: 1.25em;
         font-size: 16px;
         text-transform: uppercase;
+        position: relative;
       }
       input{
         width: 100%;
@@ -156,6 +159,20 @@
         color: #54565b;
         background: #fff;
         border: 1px solid #d1d0ce;
+        border-radius: 0;
+        &:focus{
+          border-width:2px;
+          border-color: #0073ae;
+        }
+        &.errorMsg {
+          border-color: #c41230;
+          color:#c41230;
+          &:focus {
+            border-color: #c41230;
+            color:#c41230;
+          }
+        }
+
       }
       .toggle-ssn{
         a{
@@ -178,16 +195,23 @@
     text-align: center;
 
     .btn{
-      padding: 10px 15px;
+      padding: 10px 25px;
       margin-right: 10px;
       margin-top: 20px;
       background: #0073ae;
       border: 0;
-      color:#fff;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      border-radius: 0;
+      border: 2px solid #0073ae;
     font-size: 13px;
       &.cancel{
         background: transparent;
         color:#000;
+        border:0;
       }
     }
     .link-container {
@@ -197,4 +221,34 @@
       font-size: 16px;
     }
   }
+  #forgot-username-confirmation {
+    h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      line-height: 30px;
+    }
+    .content {
+      width: 100%;
+      max-width:750px;
+      margin: 0 auto;
+      h4 {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      ul {
+        clear: both;
+        padding: 0 0 0 15px;
+      }
+      .buttons {
+        clear: both;
+        .btn {
+          display: inherit;
+          max-width: 240px;
+          width: 100%;
+          margin: 80px auto;
+        }
+      }
+    }
+  }
+
 }
