@@ -39,7 +39,7 @@ export const initialState = {
 };
 
 export default (state = initialState, action) => {
-   // console.log(action,'4::::::::::::::action:::::::::');
+    console.log(action,'4::::::::::::::action:::::::::');
     switch (action.type) {
         case types.SWITCH_USER:
             return {
@@ -47,25 +47,25 @@ export default (state = initialState, action) => {
                 userType: action.userType
             }
         case types.SUBMIT_ACTION:
-           // console.log('39::::::::::::::submit', action,state);
+            console.log('39::::::::::::::submit', action,state);
             let newStateSubmit = _.cloneDeep(action);
             delete newStateSubmit.type;
             return newStateSubmit;
 
         case types.INPUT_CHANGE:
-          //  console.log('39', action,state)
+            console.log('39', action,state)
             let newState = _.cloneDeep(action);
             delete newState.type;
             return newState;
 
         case types.INPUT_CHANGE_OUTSIDE:
-          //  console.log('39', action,state)
+            console.log('39', action,state)
             let newStateBlur = _.cloneDeep(action);
             delete newStateBlur.type;
             return newStateBlur;
 
         case types.MASK:
-         //   console.log('39', action,state)
+            console.log('39', action,state)
             let newStateMask = _.cloneDeep(action);
             delete newStateMask.type;
             return newStateMask;

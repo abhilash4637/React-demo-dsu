@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+var classNames = require('classnames');
 
 class Employer extends Component {
     constructor(props){
         super(props);
     }
     render() {
-        const {formValidationEmail,onChangeInputType} = this.props;
+        const {formValidationEmail,onChangeInputType,onChangeOutsideInputType} = this.props;
         return (
             <div className="container">
                 <div className="show">
@@ -15,8 +16,9 @@ class Employer extends Component {
                 </div>
                 <div className="form-group">
                     <label className="form-label" htmlFor="employerEmailInput">Email</label>
-                    <input className="form-control" type="email" id="employerEmailInput" name="employerEmailInput"
-                           defaultValue={formValidationEmail.value}  onKeyUp={(e) => onChangeInputType(e)}/>
+                    <input className={classNames('form-control', { errorMsg: formValidationEmail.error == 'true'})} type="email" id="employerEmailInput" name="employerEmailInput"
+                           defaultValue={formValidationEmail.value}  onKeyUp={(e) => onChangeInputType(e)}
+                           onBlur={(e) => onChangeOutsideInputType(e)}/>
                 </div>
                 {/*// <div className="captcha-container">*/}
                 {/*//     <div className="g-recaptcha form-group" data-sitekey="6LcGfSoUAAAAAMmvZmdDWLoh3hXZ6cxXfvn9SjyX">*/}
